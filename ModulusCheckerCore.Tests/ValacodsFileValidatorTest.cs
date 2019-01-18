@@ -1,40 +1,19 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
+using System;
 
 namespace ModulusCheckerCore.Tests
 {
-    [TestClass]
+
     public class ValacodsFileValidatorTest
     {
-
-        public ValacodsFileValidatorTest()
-        {
-            
-        }
-
-        [TestMethod]
+        [Test]
         public void EnsureFileIsNotNullOrEmpty()
         {
-            // Arrange
             var weightLoaderFile = Properties.Resources.valacdos;
 
-            // Act
-            var modulusWeightTableInitialiser = new Business.ModulusWeightTableInitialiser(weightLoaderFile);
-
-            // Asset
-            Assert.AreNotEqual(null, weightLoaderFile);
-         
+            Assert.DoesNotThrow(() => 
+                new Business.ModulusWeightTableInitialiser(weightLoaderFile)
+            );
         }
-
-        [TestMethod]
-        public void EnsureFileIsValid()
-        {
-            // Arrrange
-
-            // Act
-            
-            // Assert
-
-        }
-
     }
 }
