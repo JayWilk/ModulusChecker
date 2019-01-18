@@ -15,5 +15,12 @@ namespace ModulusCheckerCore.Tests
                 new Business.ModulusWeightTableInitialiser(weightLoaderFile)
             );
         }
+
+        [Test]
+        public void EnsureModulusWeightFileProcessed()
+        {
+            var weightInitialiser = new Business.ModulusWeightTableInitialiser(Properties.Resources.valacdos);
+            Assert.IsNotNull(weightInitialiser.ModulusWeightItems);
+        }
     }
 }

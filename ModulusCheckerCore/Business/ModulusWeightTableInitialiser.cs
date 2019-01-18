@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ModulusCheckerCore.Models;
+using System;
+using System.Collections.Generic;
 
 namespace ModulusCheckerCore.Business
 {
-    public class ModulusWeightTableInitialiser
+    public class ModulusWeightTableInitialiser 
     {
-        private string ModulusWeightTableResource;
+        public IEnumerable<ModulusWeightItem> ModulusWeightItems { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModulusWeightTableInitialiser"/> class.
@@ -16,8 +18,7 @@ namespace ModulusCheckerCore.Business
             if (string.IsNullOrEmpty(modulusWeightTableFile))
                 throw new ArgumentNullException();
 
-            ModulusWeightTableResource = modulusWeightTableFile;
+            // Todo: processing for ModulusWeightItems
         }
-
     }
 }

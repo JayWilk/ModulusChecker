@@ -81,7 +81,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\Entities\ModulusCheck.cs" />
     <Compile Include="Business\ModulusWeightTableInitialiser.cs" />
+    <Compile Include="Models\ModulusWeightItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
