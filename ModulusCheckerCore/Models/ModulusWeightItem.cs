@@ -12,6 +12,6 @@ namespace ModulusCheckerCore.Models
 
         public int[] Weight { get; set; }
 
-        public int Ex { get; set; }
+        public int? Exception { get; set; }
     }
 }

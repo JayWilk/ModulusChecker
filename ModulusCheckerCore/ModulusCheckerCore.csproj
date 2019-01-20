@@ -75,14 +75,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\valacdos.txt">
+    <EmbeddedResource Include="Resources\valacdos.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Entities\ModulusCheck.cs" />
-    <Compile Include="Business\ModulusWeightTableInitialiser.cs" />
+    <Compile Include="Business\ModulusWeightTable.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ModulusWeightItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
