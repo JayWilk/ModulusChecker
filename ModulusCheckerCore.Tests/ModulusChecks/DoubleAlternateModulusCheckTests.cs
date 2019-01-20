@@ -21,7 +21,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         [TestCase(203099, 6683106)] // Pass Modulus 11 check and fail double alternate check
         public void FailDoubleAlternateModulusCheck(double sortCode, double accountNumber)
         {
-            var account = new Account(sortCode, accountNumber);
+            var account = new BankAccount(sortCode, accountNumber);
 
         }
     }

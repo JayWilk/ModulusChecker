@@ -48,5 +48,17 @@ namespace ModulusCheckerCore.Business
                 ModulusWeightItems.Add(item);
             }
         }
+
+        /// <summary>
+        /// Gets the modulus weight item based on the sort code
+        /// </summary>
+        /// <param name="bankAccount">The bank account.</param>
+        /// <returns></returns>
+        public ModulusWeightItem GetModulusWeight(BankAccount bankAccount)
+        {
+            return ModulusWeightItems
+                .Where(x => x.SortCodeStart <= bankAccount.SortCode && x.SortCodeEnd <= bankAccount.SortCode)
+                .FirstOrDefault();
+        }
     }
 }

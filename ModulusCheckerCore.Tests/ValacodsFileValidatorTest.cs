@@ -18,17 +18,27 @@ namespace ModulusCheckerCore.Tests
         [Test]
         public void EnsureModulusWeightFileProcessed()
         {
-            var weightInitialiser = new Business.ModulusWeightTable(Properties.Resources.valacdos);
-            Assert.IsNotNull(weightInitialiser.ModulusWeightItems);
+            var weightMappings = new Business.ModulusWeightTable(Properties.Resources.valacdos);
+            Assert.IsNotNull(weightMappings.ModulusWeightItems);
 
             // The file contains 1073 elements
-            Assert.AreEqual(weightInitialiser.ModulusWeightItems.Count, 1073, "Incorrect number of weight items in the table");
+            Assert.AreEqual(weightMappings.ModulusWeightItems.Count, 1073, "Incorrect number of weight items in the table");
 
             // Check all of the weightings are loaded
-            Assert.AreEqual(weightInitialiser.ModulusWeightItems.First().Weight.Count(), 14, "Incorrect number of digit positions");
+            Assert.AreEqual(weightMappings.ModulusWeightItems.First().Weight.Count(), 14, "Incorrect number of digit positions");
 
             // Check the exceptions are loaded
-            Assert.AreEqual(weightInitialiser.ModulusWeightItems.ElementAt(20).Exception, 12, "The exception was not parsed");
+            Assert.AreEqual(weightMappings.ModulusWeightItems.ElementAt(20).Exception, 12, "The exception was not parsed");
+
+        }
+
+        [Test]
+        [TestCase(107999, 88837491)]
+        public void CheckSortCodeMatch(double sortCode, double accountNumber)
+        {
+            var weightMappings = new Business.ModulusWeightTable(Properties.Resources.valacdos);
+            
+            Assert.IsNotNull(weightMappings.GetModulusWeight(new Models.BankAccount(sortCode, accountNumber)));
         }
     }
 }
