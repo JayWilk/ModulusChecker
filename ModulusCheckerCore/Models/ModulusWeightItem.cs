@@ -8,7 +8,7 @@ namespace ModulusCheckerCore.Models
 
         public double SortCodeEnd { get; set; }
 
-        public ModulusCheck ModulusCheck { get; set; }
+        public ModulusCalculationType ModulusCalculationType { get; set; }
 
         public int[] Weight { get; set; }
 

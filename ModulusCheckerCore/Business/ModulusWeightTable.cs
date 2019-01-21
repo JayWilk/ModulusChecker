@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ModulusCheckerCore.Business.Entities;
 
 namespace ModulusCheckerCore.Business
 {
@@ -34,8 +35,8 @@ namespace ModulusCheckerCore.Business
                 {
                     SortCodeStart = double.Parse(items.ElementAt(0)),
                     SortCodeEnd = double.Parse(items.ElementAt(1)),
-                    ModulusCheck = (Entities.ModulusCheck)Enum.Parse(typeof(Entities.ModulusCheck), items.ElementAt(2), true),
-                    Exception = items.Count() == 18 ? int.Parse(items.ElementAt(17)) : (int?)null,
+                    ModulusCalculationType = (ModulusCalculationType)Enum.Parse(typeof(ModulusCalculationType), items.ElementAt(2), true),
+                    Exception = items.Count() == 18 ? int.Parse(items.Last()) : (int?)null,
                     Weight = new int[14]
                 };
 
@@ -57,8 +58,7 @@ namespace ModulusCheckerCore.Business
         public ModulusWeightItem GetModulusWeight(BankAccount bankAccount)
         {
             return ModulusWeightItems
-                .Where(x => x.SortCodeStart <= bankAccount.SortCode && x.SortCodeEnd <= bankAccount.SortCode)
-                .FirstOrDefault();
+                .FirstOrDefault(x => x.SortCodeStart <= bankAccount.SortCode && x.SortCodeEnd <= bankAccount.SortCode);
         }
     }
 }

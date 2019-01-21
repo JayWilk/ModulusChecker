@@ -1,6 +1,6 @@
 ﻿namespace ModulusCheckerCore.Business.Entities
 {
-    public enum ModulusCheck
+    public enum ModulusCalculationType
     {
         Mod10,
         Mod11,
