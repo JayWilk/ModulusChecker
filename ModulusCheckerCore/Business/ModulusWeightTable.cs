@@ -40,7 +40,6 @@ namespace ModulusCheckerCore.Business
                     Weight = new int[14]
                 };
 
-                // Todo: Optimise
                 for(int i = 0; i < 14; i++)
                 {
                     item.Weight[i] = int.Parse(items.ElementAt(i + 3));
@@ -55,10 +54,10 @@ namespace ModulusCheckerCore.Business
         /// </summary>
         /// <param name="bankAccount">The bank account.</param>
         /// <returns></returns>
-        public ModulusWeightItem GetModulusWeight(BankAccount bankAccount)
+        public IEnumerable<ModulusWeightItem> GetModulusWeight(BankAccount bankAccount)
         {
             return ModulusWeightItems
-                .FirstOrDefault(x => x.SortCodeStart <= bankAccount.SortCode && x.SortCodeEnd <= bankAccount.SortCode);
+                .Where(x => bankAccount.SortCode >= x.SortCodeStart && bankAccount.SortCode <= x.SortCodeEnd);
         }
     }
 }

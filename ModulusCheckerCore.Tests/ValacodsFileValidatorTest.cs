@@ -37,8 +37,11 @@ namespace ModulusCheckerCore.Tests
         public void CheckSortCodeMatch(double sortCode, double accountNumber)
         {
             var weightMappings = new Business.ModulusWeightTable(Properties.Resources.valacdos);
-            
-            Assert.IsNotNull(weightMappings.GetModulusWeight(new Models.BankAccount(sortCode, accountNumber)));
+
+            var modulusWeight = weightMappings.GetModulusWeight(new Models.BankAccount(sortCode, accountNumber));
+
+            Assert.IsNotNull(modulusWeight);
+            Assert.AreEqual(modulusWeight.Count(), 1);
         }
     }
 }
