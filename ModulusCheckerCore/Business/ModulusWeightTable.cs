@@ -61,7 +61,7 @@ namespace ModulusCheckerCore.Business
         public IEnumerable<ModulusWeightItem> GetModulusWeight(BankAccount bankAccount)
         {
             return ModulusWeightItems
-                .Where(x => bankAccount.SortCode >= x.SortCodeStart && bankAccount.SortCode <= x.SortCodeEnd);
+                .Where(x => double.Parse(bankAccount.SortCode) >= x.SortCodeStart && double.Parse(bankAccount.SortCode) <= x.SortCodeEnd);
         }
     }
 }

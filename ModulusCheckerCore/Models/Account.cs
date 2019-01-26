@@ -2,11 +2,11 @@
 {
     public class BankAccount
     {
-        public double SortCode { get; set; }
+        public string SortCode { get; set; }
 
-        public double AccountNumber { get; set; }
+        public string AccountNumber { get; set; }
 
-        public BankAccount(double sortCode, double accountNumber)
+        public BankAccount(string sortCode, string accountNumber)
         {
             SortCode = sortCode;
             AccountNumber = accountNumber;

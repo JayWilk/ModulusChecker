@@ -33,8 +33,8 @@ namespace ModulusCheckerCore.Tests
         }
 
         [Test]
-        [TestCase(107999, 88837491)]
-        public void CheckSortCodeMatch(double sortCode, double accountNumber)
+        [TestCase("107999", "88837491")]
+        public void CheckSortCodeMatch(string sortCode, string accountNumber)
         {
             var weightMappings = new Business.ModulusWeightTable(Properties.Resources.valacdos);
 
