@@ -18,13 +18,17 @@ namespace ModulusCheckerCore.Business
         public ModulusWeightTable(string modulusWeightTableFile)
         {
             if (string.IsNullOrEmpty(modulusWeightTableFile))
+            {
                 throw new ArgumentNullException();
+            }
 
             var weightItems = modulusWeightTableFile.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             if (weightItems == null || !weightItems.Any())
+            {
                 throw new NullReferenceException("No valid weight items were found");
-            
+            }
+
             ModulusWeightItems = new List<ModulusWeightItem>();
 
             foreach(var weightItem in weightItems)

@@ -1,18 +1,66 @@
-﻿using NUnit.Framework;
+﻿using ModulusCheckerCore.Business;
+using ModulusCheckerCore.Business.Entities;
+using ModulusCheckerCore.Business.ModulusChecks;
+using ModulusCheckerCore.Models;
+using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace ModulusCheckerCore.ModulusChecks.Tests
 {
     public class StandardModulusCheckTests
     {
+        private ModulusWeightTable ModulusWeightTable;
+
+        public StandardModulusCheckTests()
+        {
+            var weightLoaderFile = Properties.Resources.valacdos;
+            ModulusWeightTable = new ModulusWeightTable(weightLoaderFile);          
+        }
+
+        [Test]
+        [TestCase(820000, 73688637)] // Exception 3
+        public void InvalidExceptionsShouldError(double sortCode, double accountNumber)
+        {
+            var account = new BankAccount(sortCode, accountNumber);
+
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
+
+            Assert.Throws<NotImplementedException>(
+                () => new StandardModulusCheck(account, modulusWeight)
+            );
+        }
+
+        [Test]
+        [TestCase(820000, 1)] // Invalid account number 
+        public void InvalidBankAccountShouldError(double sortCode, double accountNumber)
+        {
+            var account = new BankAccount(sortCode, accountNumber);
+
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => new StandardModulusCheck(account, modulusWeight)
+            );
+        }
+
+
         [Test]
         [TestCase(089999, 66374958)]
-        public void ValidateModulus10(double sortcode, double accountNumber)
+        public void ValidateModulus10(double sortCode, double accountNumber)
         {
-            // Arrange
-             
-            // Act
+            var account = new BankAccount(sortCode, accountNumber);
 
-            // Assert
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
+
+            var mod10Calculator = new StandardModulusCheck(account, modulusWeight);
+
+            var modulsCheck = mod10Calculator.Process();
+
+            Assert.AreEqual(modulsCheck, ModulusCheckResult.Pass);
         }
 
         [Test]
@@ -20,11 +68,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         [TestCase(202959, 63748472)] // Pass modulus 11 and double alternate checks
         public void ValidateModulus11(double sortcode, double accountNumber)
         {
-            // Arrange
 
-            // Act
-
-            // Assert
         }
 
         [Test]
@@ -40,6 +84,5 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         {
 
         }
-
     }
 }

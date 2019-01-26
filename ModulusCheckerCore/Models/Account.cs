@@ -13,12 +13,9 @@
         }
 
         /// <summary>
-        /// Returns a formatted account number a string in the format {SortCode}{AccountNumber}
+        /// Return a string in the format of {SortCode}{AccountNumber} 
         /// </summary>
-        /// <value>
-        /// The formatted number.
-        /// </value>
-        public string FormattedNumber =>
-            (SortCode + AccountNumber).ToString();
+        public override string ToString() =>
+            $"{SortCode}{AccountNumber}";
     }
 }
