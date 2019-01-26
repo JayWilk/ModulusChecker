@@ -19,8 +19,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         }
 
         [Test]
-        [TestCase("820000", "73688637")] // Exception 3
-        public void InvalidExceptionsShouldError(string sortCode, string accountNumber)
+        public void InvalidExceptionsShouldErrorModulus10(string sortCode, string accountNumber)
         {
             var account = new BankAccount(sortCode, accountNumber);
 
@@ -28,8 +27,18 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
                 .FirstOrDefault();
 
             Assert.Throws<NotImplementedException>(
-                () => new StandardModulusCheck(account, modulusWeight)
+                () => new StandardModulusTenCheck(account, modulusWeight)
             );
+        }
+
+        [Test]
+        [TestCase("820000", "73688637")] // Exception 3
+        public void InvalidExceptionsShouldErrorModulus11(string sortCode, string accountNumber)
+        {
+            var account = new BankAccount(sortCode, accountNumber);
+
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
         }
 
         [Test]
@@ -42,7 +51,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
                 .FirstOrDefault();
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                () => new StandardModulusCheck(account, modulusWeight)
+                () => new StandardModulusTenCheck(account, modulusWeight)
             );
         }
 
@@ -56,7 +65,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
             var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
                 .FirstOrDefault();
 
-            var mod10Calculator = new StandardModulusCheck(account, modulusWeight);
+            var mod10Calculator = new StandardModulusTenCheck(account, modulusWeight);
 
             var modulsCheck = mod10Calculator.Process();
 
@@ -80,7 +89,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
             var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
                 .FirstOrDefault();
 
-            var mod10Calculator = new StandardModulusCheck(account, modulusWeight);
+            var mod10Calculator = new StandardModulusTenCheck(account, modulusWeight);
 
             var modulsCheck = mod10Calculator.Process();
 

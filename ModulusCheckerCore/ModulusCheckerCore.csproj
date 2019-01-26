@@ -84,8 +84,8 @@
     <Compile Include="Business\Entities\ModulusCheckResult.cs" />
     <Compile Include="Business\Entities\ModulsCalculationType.cs" />
     <Compile Include="Business\ModulusChecks\IModulusCheckCalculator.cs" />
-    <Compile Include="Business\ModulusChecks\ModulusCheckCalculator.cs" />
-    <Compile Include="Business\ModulusChecks\StandardModulusCheck.cs" />
+    <Compile Include="Business\ModulusChecks\ModulusCheck.cs" />
+    <Compile Include="Business\ModulusChecks\StandardModulusTenCheck.cs" />
     <Compile Include="Business\ModulusWeightTable.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ModulusWeightItem.cs" />
