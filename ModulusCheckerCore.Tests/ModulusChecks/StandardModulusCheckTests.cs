@@ -73,9 +73,18 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
 
         [Test]
         [TestCase("089999", "66374959")]
-        public void FailModulus10(string sortcode, string accountNumber)
+        public void FailModulus10(string sortCode, string accountNumber)
         {
+            var account = new BankAccount(sortCode, accountNumber);
 
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
+
+            var mod10Calculator = new StandardModulusCheck(account, modulusWeight);
+
+            var modulsCheck = mod10Calculator.Process();
+
+            Assert.AreEqual(modulsCheck, ModulusCheckResult.Fail);
         }
 
         [Test]
