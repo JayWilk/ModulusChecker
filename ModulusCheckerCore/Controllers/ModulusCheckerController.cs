@@ -10,13 +10,8 @@ namespace ModulusCheckerCore.Controllers
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public IHttpActionResult IsAccountValid(double sortCode, double accountNumber)
+        public IHttpActionResult IsAccountValid(string sortCode, string accountNumber)
         {
-            if(sortCode == 0 || accountNumber == 0)
-            {
-                return InternalServerError(new ArgumentOutOfRangeException());
-            }
-
             var bankAccount = new BankAccount(sortCode.ToString(), accountNumber.ToString());
 
             try
