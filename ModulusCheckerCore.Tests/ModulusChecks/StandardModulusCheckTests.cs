@@ -19,7 +19,7 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         }
 
         [Test]
-        [TestCase("871427", "46238510")]
+        [TestCase("871427", "46238510")] // Exception 10 
         public void InvalidExceptionsShouldErrorModulus10(string sortCode, string accountNumber)
         {
             var account = new BankAccount(sortCode, accountNumber);
@@ -76,9 +76,18 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         [Test]
         [TestCase("107999", "88837491")]
         [TestCase("202959", "63748472")] // Pass modulus 11 and double alternate checks
-        public void ValidateModulus11(string sortcode, string accountNumber)
+        public void ValidateModulus11(string sortCode, string accountNumber)
         {
+            var account = new BankAccount(sortCode, accountNumber);
 
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
+
+            var mod11Calculator = new StandardModulusElevenCheck(account, modulusWeight);
+
+            var modulsCheck = mod11Calculator.Process();
+
+            Assert.AreEqual(modulsCheck, ModulusCheckResult.Pass);
         }
 
         [Test]
@@ -101,7 +110,16 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         [TestCase("107999", "88837493")]
         public void FailModulus11(string sortCode, string accountNumber)
         {
+            var account = new BankAccount(sortCode, accountNumber);
 
+            var modulusWeight = ModulusWeightTable.GetModulusWeight(account)
+                .FirstOrDefault();
+
+            var mod11Calculator = new StandardModulusElevenCheck(account, modulusWeight);
+
+            var modulsCheck = mod11Calculator.Process();
+
+            Assert.AreEqual(modulsCheck, ModulusCheckResult.Fail);
         }
     }
 }
