@@ -83,7 +83,8 @@
   <ItemGroup>
     <Compile Include="Business\Entities\ModulusCheckResult.cs" />
     <Compile Include="Business\Entities\ModulsCalculationType.cs" />
-    <Compile Include="Business\ModulusChecks\IModulusCheckCalculator.cs" />
+    <Compile Include="Business\ModulusChecks\DoubleAlternateModulusCheck.cs" />
+    <Compile Include="Business\ModulusChecks\IModulusCheck.cs" />
     <Compile Include="Business\ModulusChecks\ModulusCheck.cs" />
     <Compile Include="Business\ModulusChecks\StandardModulusElevenCheck.cs" />
     <Compile Include="Business\ModulusChecks\StandardModulusTenCheck.cs" />

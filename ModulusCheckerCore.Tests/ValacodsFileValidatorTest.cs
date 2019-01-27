@@ -29,7 +29,6 @@ namespace ModulusCheckerCore.Tests
 
             // Check the exceptions are loaded
             Assert.AreEqual(weightMappings.ModulusWeightItems.ElementAt(20).Exception, 12, "The exception was not parsed");
-
         }
 
         [Test]

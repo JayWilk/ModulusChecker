@@ -1,12 +1,13 @@
 ﻿using ModulusCheckerCore.Business.Entities;
 using ModulusCheckerCore.Models;
 using System;
-using System.Globalization;
 
 namespace ModulusCheckerCore.Business.ModulusChecks
 {
-    public abstract class ModulusCheck : IModulusCheckCalculator
+    public abstract class ModulusCheck : IModulusCheck
     {
+        public abstract int Modulus { get; }
+
         protected ModulusWeightItem ModulusWeightItem { get; private set; }
 
         protected BankAccount BankAccount { get; private set; }
@@ -20,19 +21,13 @@ namespace ModulusCheckerCore.Business.ModulusChecks
         public ModulusCheck(ModulusWeightItem weightItem, BankAccount bankAccount)
         {
             if(bankAccount.ToString().Length != 14)
-            {
                 throw new ArgumentOutOfRangeException(nameof(bankAccount), "The sort code and account number should be a total of 14 characters in length");
-            }
 
             if (weightItem == null)
-            {
                 throw new ArgumentOutOfRangeException(nameof(weightItem), "Weight items must be provided to perform a standard modulus check");
-            }
 
             if (weightItem.Exception.HasValue && weightItem.Exception.Value != 7 && weightItem.Exception.Value != 4)
-            {
                 throw new NotImplementedException("Only exceptions 7 and 4 are supported");
-            }
 
             ModulusWeightItem = weightItem;
             BankAccount = bankAccount;
@@ -41,22 +36,15 @@ namespace ModulusCheckerCore.Business.ModulusChecks
         /// <summary>
         /// Gets the modulus sum.
         /// </summary>
-        /// <param name="modulus">The modulus, generally this is 10 or 11</param>
         /// <returns></returns>
-        protected int GetModulusSum(int modulus)
-        {
-            var sum = 0;
-            for (var i = 0; i < 14; i++)
-            {
-                sum += (int.Parse(BankAccount.ToString()[i].ToString(CultureInfo.InvariantCulture)) * ModulusWeightItem.Weight[i]);
-            }
-            return sum % modulus;
-        }
+        public abstract int GetModulusSum();
 
         /// <summary>
-        /// Processes this instance.
+        /// Processes the calculation to determine if the provided account is valid or not
         /// </summary>
-        /// <returns>The modulus result</returns>
+        /// <returns>
+        /// The modulus result
+        /// </returns>
         public abstract ModulusCheckResult Process();
     }
 }

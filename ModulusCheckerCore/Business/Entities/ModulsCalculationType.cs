@@ -4,6 +4,6 @@
     {
         Mod10,
         Mod11,
-        DBlAL
+        DblAl
     }
 }

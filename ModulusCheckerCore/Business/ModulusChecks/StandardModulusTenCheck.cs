@@ -1,12 +1,13 @@
 ﻿using ModulusCheckerCore.Business.Entities;
 using ModulusCheckerCore.Models;
 using System;
+using System.Globalization;
 
 namespace ModulusCheckerCore.Business.ModulusChecks
 {
     public class StandardModulusTenCheck : ModulusCheck
     {
-        private int Modulus = 10;
+        public override int Modulus => 10;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StandardModulusTenCheck"/> class.
@@ -21,12 +22,33 @@ namespace ModulusCheckerCore.Business.ModulusChecks
             }
         }
 
+        /// <summary>
+        /// Processes the calculation to determine if the provided account is valid or not
+        /// </summary>
+        /// <returns>
+        /// The modulus result
+        /// </returns>
         public override ModulusCheckResult Process()
         {
-            var remainder = GetModulusSum(Modulus);
+            var remainder = GetModulusSum();
 
             // Todo: add support for exceptions 4 and 7
             return remainder == 0 ? ModulusCheckResult.Pass : ModulusCheckResult.Fail; 
+        }
+
+        /// <summary>
+        /// Gets the modulus sum.
+        /// </summary>
+        /// <param name="modulus">The modulus, generally this is 10 or 11</param>
+        /// <returns></returns>
+        public override int GetModulusSum()
+        {
+            var sum = 0;
+            for (var i = 0; i < 14; i++)
+            {
+                sum += (int.Parse(BankAccount.ToString()[i].ToString(CultureInfo.InvariantCulture)) * ModulusWeightItem.Weight[i]);
+            }
+            return sum % Modulus;
         }
     }
 }
