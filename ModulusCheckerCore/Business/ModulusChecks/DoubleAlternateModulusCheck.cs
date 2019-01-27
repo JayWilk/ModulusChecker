@@ -26,32 +26,16 @@ namespace ModulusCheckerCore.Business.ModulusChecks
         }
 
         /// <summary>
-        /// Processes the calculation to determine if the provided account is valid or not
-        /// </summary>
-        /// <returns>
-        /// The modulus result
-        /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public override ModulusCheckResult Process()
-        {
-            var remainder = GetModulusSum();
-
-            // Todo: add support for exceptions 4 and 7
-            return remainder == 0 ? ModulusCheckResult.Pass : ModulusCheckResult.Fail;
-        }
-
-        /// <summary>
         /// Gets the modulus sum.
         /// </summary>
-        /// <remarks></remarks>
-        /// <returns>Multiply each digit in the formatted bank account by its corresponding weight, add them together then divide by 10</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public override int GetModulusSum()
+        /// <param name="weightItem"></param>
+        /// <returns></returns>
+        public override int GetModulusSum(ModulusWeightItem weightItem)
         {
             var sum = 0;
             for (var i = 0; i < 14; i++)
             {
-                var multiplicationResult = (int.Parse(BankAccount.ToString()[i].ToString()) * ModulusWeightItem.Weight[i]);
+                var multiplicationResult = (int.Parse(BankAccount.ToString()[i].ToString()) * weightItem.Weight[i]);
                 sum += GetIntArray(multiplicationResult).Sum();
             }
 

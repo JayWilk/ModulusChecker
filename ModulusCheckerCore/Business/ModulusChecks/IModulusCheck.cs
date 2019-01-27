@@ -1,4 +1,5 @@
 ﻿using ModulusCheckerCore.Business.Entities;
+using ModulusCheckerCore.Models;
 
 namespace ModulusCheckerCore.Business.ModulusChecks
 {
@@ -15,7 +16,8 @@ namespace ModulusCheckerCore.Business.ModulusChecks
         /// <summary>
         /// Gets the modulus sum.
         /// </summary>
+        /// <param name="weightItem">The weight item.</param>
         /// <returns></returns>
-        int GetModulusSum();
+        int GetModulusSum(ModulusWeightItem weightItem);
     }
 }
