@@ -61,6 +61,7 @@
     <Compile Include="ModulusChecks\DoubleAlternateModulusCheckTests.cs" />
     <Compile Include="ModulusChecks\StandardModulusCheckTests.cs" />
     <Compile Include="ModulusChecks\ModulusCheckExceptionTests.cs" />
+    <Compile Include="BankAccountTests.cs" />
     <Compile Include="ValacodsFileValidatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
