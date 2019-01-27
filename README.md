@@ -24,14 +24,14 @@ The below table details some test accounts which were obtained from the specific
  
 | Account Number | Sort Code | Algorithm              | Valid |  Test URL    | Notes                                       |
 |----------------|-----------|------------------------|-------|------|---------------------------------------------|
-| 66374958       | 089999    | Modulus 10             | Yes   | Test |                                             |
-| 88837491       | 107999    | Modulus 11             | Yes   | Test |                                             |
-| 66374959       | 089999    | Modulus 10             | No    | Test |                                             |
-| 88837493       | 107999    | Modulus 11             | No    | Test |                                             |
-| 66831036       | 203099    | Modulus 11  Double Alt | No    | Test | Exception 6 is not supported - returns true |
-| 58716970       | 203099    | Modulus 11 Double Alt  | No    | Test | Exception 6 is not supported - returns true |
-| 63849203       | 134020    | Modulus 11             | Yes   | Test | Exception 4                                 |
-| 99345694       | 772798    | Modulus 11             | Yes   | Test | Exception 7                                 |
+| 66374958       | 089999    | Modulus 10             | Yes   | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=089999&accountNumber=66374958) |                                             |
+| 88837491       | 107999    | Modulus 11             | Yes   | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=107999&accountNumber=88837491) |                                             |
+| 66374959       | 089999    | Modulus 10             | No    | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=089999&accountNumber=66374959) |                                             |
+| 88837493       | 107999    | Modulus 11             | No    | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=107999&accountNumber=88837493) |                                             |
+| 66831036       | 203099    | Modulus 11  Double Alt | No    | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=203099&accountNumber=66831036) | Exception 6 is not supported - returns true |
+| 58716970       | 203099    | Modulus 11 Double Alt  | No    | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=203099&accountNumber=58716970) | Exception 6 is not supported - returns true |
+| 63849203       | 134020    | Modulus 11             | Yes   | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=134020&accountNumber=63849203) | Exception 4                                 |
+| 99345694       | 772798    | Modulus 11             | Yes   | [Test](http://jaywilkinson.co.uk/api/moduluscheck/validateaccount?sortCode=772798&accountNumber=99345694) | Exception 7                                 |
 
 Please note that the Unit Tests included in the Core project will provide a more accurate and detailed result, and all of the above tests are covered.
 
