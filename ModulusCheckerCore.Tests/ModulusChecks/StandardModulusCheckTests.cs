@@ -15,10 +15,11 @@ namespace ModulusCheckerCore.ModulusChecks.Tests
         public StandardModulusCheckTests()
         {
             var weightLoaderFile = Properties.Resources.valacdos;
-            ModulusWeightTable = new ModulusWeightTable(weightLoaderFile);          
+            ModulusWeightTable = new ModulusWeightTable(weightLoaderFile);
         }
 
         [Test]
+        [TestCase("871427", "46238510")]
         public void InvalidExceptionsShouldErrorModulus10(string sortCode, string accountNumber)
         {
             var account = new BankAccount(sortCode, accountNumber);
